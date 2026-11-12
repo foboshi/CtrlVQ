@@ -305,16 +305,16 @@ def evaluate_with_logits_topk(model, tokenizer, prompts, meta, entity_to_code,
     return metrics
 
 def main():
-    parser = argparse.ArgumentParser(description="MMKGC 预测与评估（极致优化版本）")
-    parser.add_argument("--model_path", type=str, required=True, help="微调后的模型路径 (Stage 2)")
-    parser.add_argument("--test_data_path", type=str, required=True, help="测试集 prompt 文件路径")
-    parser.add_argument("--entity_codes_path", type=str, required=True, help="实体码字映射文件路径")
-    parser.add_argument("--output_path", type=str, default="evaluation_results.json", help="评估结果输出路径")
-    parser.add_argument("--bad_case_path", type=str, default=None, help="Bad case 分析文件输出路径 (JSONL)")
-    parser.add_argument("--good_case_path", type=str, default=None, help="Good case 分析文件输出路径 (JSONL)")
-    parser.add_argument("--log_file", type=str, default="evaluation.log", help="评估日志文件路径")
-    parser.add_argument("--batch_size", type=int, default=16, help="评估批大小")
-    parser.add_argument("--device", type=str, default="auto", help="设备 (cuda, cpu, auto)")
+    parser = argparse.ArgumentParser(description="")
+    parser.add_argument("--model_path", type=str, required=True, help="")
+    parser.add_argument("--test_data_path", type=str, required=True, help="")
+    parser.add_argument("--entity_codes_path", type=str, required=True, help="")
+    parser.add_argument("--output_path", type=str, default="evaluation_results.json", help="")
+    parser.add_argument("--bad_case_path", type=str, default=None, help="")
+    parser.add_argument("--good_case_path", type=str, default=None, help="")
+    parser.add_argument("--log_file", type=str, default="evaluation.log", help="")
+    parser.add_argument("--batch_size", type=int, default=16, help="")
+    parser.add_argument("--device", type=str, default="auto", help="")
     args = parser.parse_args()
 
     
