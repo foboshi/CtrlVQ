@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "CtrlVQ"
+version = "0.1.0"
+description = "Multimodal quantization and two-stage LLM training using the original CtrlVQ project protocol"
+requires-python = ">=3.10"
+dependencies = [
+  "torch>=2.0.0", "numpy>=1.24.0", "h5py>=3.8.0",
+  "transformers>=4.40.0", "peft>=0.10.0", "accelerate>=0.28.0", "tqdm>=4.65.0"
+]
+
+[project.scripts]
+ctrlvq = "ctrlvq.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["ctrlvq*"]
