@@ -366,17 +366,17 @@ def generate_test_prompts(triples, entity_indices, levels,
 
 
 def main():
-    parser = argparse.ArgumentParser(description="生成 LLM 训练数据集")
+    parser = argparse.ArgumentParser(description="")
     parser.add_argument("--dataset", type=str, default="MKG-W", choices=["MKG-W", "MKG-Y", "MMKB-DB15K"])
-    parser.add_argument("--data_path", type=str, default=None, help="数据集路径，默认从default_config读取")
+    parser.add_argument("--data_path", type=str, default=None, help="")
     parser.add_argument("--fsq_dir", type=str, default="./outputs/fsq_model/MKG-W")
     parser.add_argument("--output_dir", type=str, default="./outputs/llm_datasets")
     parser.add_argument("--levels", type=int, nargs="+", default=[8, 8, 8, 8, 8, 8])
     parser.add_argument("--token_prefix", type=str, default="[MM")
     parser.add_argument("--token_suffix", type=str, default="]")
     parser.add_argument("--use_neighborhood", action="store_true", default=True)
-    parser.add_argument("--use_entity_id", action="store_true", default=True, help="添加实体ID token以保证唯一性")
-    parser.add_argument("--only_test", action="store_true", default=False, help="只生成测试集")
+    parser.add_argument("--use_entity_id", action="store_true", default=True, help="")
+    parser.add_argument("--only_test", action="store_true", default=False, help="")
 
     args = parser.parse_args()
 
