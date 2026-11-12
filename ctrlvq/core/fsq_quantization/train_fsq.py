@@ -1,8 +1,3 @@
-
-
-
-
-
 import os
 import sys
 import argparse
@@ -51,24 +46,24 @@ def is_main_process(rank):
     return rank == 0
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="训练 FSQ 量化模型 (DDP 版本)")
-    parser.add_argument("--dataset", type=str, default="MKG-W", choices=["MKG-W", "MKG-Y", "MMKB-DB15K"], help="数据集名称")
-    parser.add_argument("--levels", type=int, nargs="+", default=[8, 8, 8, 8, 8, 8], help="FSQ 量化级别")
-    parser.add_argument("--num_codebooks", type=int, default=1, help="FSQ 码本数量")
-    parser.add_argument("--fused_emb_dim", type=int, default=512, help="融合嵌入维度")
-    parser.add_argument("--latent_dim", type=int, default=256, help="FSQ 潜在空间维度")
-    parser.add_argument("--fusion_method", type=str, default="concat_proj", choices=["concat_proj", "attention", "gate"], help="多模态融合方式")
-    parser.add_argument("--batch_size", type=int, default=512, help="训练批大小")
-    parser.add_argument("--lr", type=float, default=1e-3, help="学习率")
-    parser.add_argument("--num_epochs", type=int, default=30, help="训练轮数")
-    parser.add_argument("--recon_weight", type=float, default=0.5, help="多模态重建损失权重")
-    parser.add_argument("--diversity_weight", type=float, default=1.0, help="码本多样性损失权重")
-    parser.add_argument("--contrastive_weight", type=float, default=0.1, help="对比学习损失权重")
-    parser.add_argument("--use_adapter", action="store_true", default=True, help="使用 Adapter 层")
-    parser.add_argument("--use_gumbel", action="store_true", default=False, help="使用 Gumbel Softmax 量化")
-    parser.add_argument("--temperature", type=float, default=1.0, help="Gumbel Softmax 温度")
-    parser.add_argument("--save_dir", type=str, default="./outputs/fsq_model", help="模型保存目录")
-    parser.add_argument("--local-rank", type=int, dest="local_rank", default=0, help="本地排名")
+    parser = argparse.ArgumentParser(description="")
+    parser.add_argument("--dataset", type=str, default="MKG-W", choices=["MKG-W", "MKG-Y", "MMKB-DB15K"], help="")
+    parser.add_argument("--levels", type=int, nargs="+", default=[8, 8, 8, 8, 8, 8], help="")
+    parser.add_argument("--num_codebooks", type=int, default=1, help="")
+    parser.add_argument("--fused_emb_dim", type=int, default=512, help="")
+    parser.add_argument("--latent_dim", type=int, default=256, help="")
+    parser.add_argument("--fusion_method", type=str, default="concat_proj", choices=["concat_proj", "attention", "gate"], help="")
+    parser.add_argument("--batch_size", type=int, default=512, help="")
+    parser.add_argument("--lr", type=float, default=1e-3, help="")
+    parser.add_argument("--num_epochs", type=int, default=30, help="")
+    parser.add_argument("--recon_weight", type=float, default=0.5, help="")
+    parser.add_argument("--diversity_weight", type=float, default=1.0, help="")
+    parser.add_argument("--contrastive_weight", type=float, default=0.1, help="")
+    parser.add_argument("--use_adapter", action="store_true", default=True, help="")
+    parser.add_argument("--use_gumbel", action="store_true", default=False, help="")
+    parser.add_argument("--temperature", type=float, default=1.0, help="")
+    parser.add_argument("--save_dir", type=str, default="./outputs/fsq_model", help="")
+    parser.add_argument("--local-rank", type=int, dest="local_rank", default=0, help="")
     return parser.parse_args()
 
 def train_epoch(fusion_model, fsq_model, dataloader, optimizer, device, recon_weight=0.5, diversity_weight=1.0, contrastive_weight=0.1, use_adapter=True, use_gumbel=False, temperature=1.0, rank=0, has_struct_emb=False):
