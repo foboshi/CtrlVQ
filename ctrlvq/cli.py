@@ -9,7 +9,7 @@ from .pipeline import run, show_plan
 
 
 def main():
-    parser = argparse.ArgumentParser(prog='ctrlvq', description='CtrlVQ 原始流程的独立整理版本')
+    parser = argparse.ArgumentParser(prog='ctrlvq', description='')
     parser.add_argument('action', choices=['plan', 'run', 'status'])
     parser.add_argument('--config', type=Path, required=True)
     parser.add_argument('--stage', choices=['all', *STAGES], default='all')
